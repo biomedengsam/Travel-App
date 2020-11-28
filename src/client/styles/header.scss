@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css2?family=Galada&display=swap");
+header {
+  display: flex;
+  justify-content: space-between;
+  // padding: 10px 20px;
+  background-color: #dfdcdc;
+}
+
+.logo {
+  font-family: Galada, Arial, Helvetica, sans-serif;
+  font-size: 2rem;
+  color: #1e4951;
+  border-radius: 5px;
+  padding: 0px 10px;
+}

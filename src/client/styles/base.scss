@@ -1,0 +1,96 @@
+@import "~bootstrap/scss/bootstrap";
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 2;
+}
+
+section {
+  max-width: 800px;
+  margin: 50px auto;
+  color: #1e4951;
+}
+
+h1 {
+  text-align: center;
+  color: #1e4951;
+}
+
+#output {
+  display: none;
+  width: 100%;
+  overflow: hidden;
+
+  h2,
+  .result {
+    animation: 2s slide-right;
+  }
+
+  #board {
+    width: 50%;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    margin-left: -100%;
+    width: 100%;
+  }
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+#result-description {
+  display: none;
+  width: 100%;
+  animation: 2s slide-right;
+}
+
+.result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#results {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+p {
+  span {
+    text-transform: capitalize;
+    font-size: 1.2rem;
+    font-weight: normal;
+  }
+}
+@media (max-width: 900px) {
+  #result-description {
+    width: calc(100% - 70px);
+    margin: 1rem;
+    padding: 0.8rem;
+  }
+
+  #output {
+    h2 {
+      margin: 23px;
+    }
+  }
+  #results {
+    align-items: center;
+    text-align: center;
+    margin: auto;
+  }
+}
+
+hr {
+  height: 2px;
+  background-color: #13373d;
+}
