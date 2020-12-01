@@ -1,16 +1,13 @@
-function checkForInput(inputText) {
-    // console.log("::: Running checkForName :::", inputText);
-    // Checks if there's no input
-    if (inputText === "") {
-        alert("Please enter text to analyze")
-        return false;
+function checkForInput(input) {
+    // Checks for input fields for data
+    for (let key in input) {
+        let value = input[key];
+        // console.log(value);
+        if (value === "") {
+            alert(`Please enter ${key} value`)
+            return false;
+        }
     }
-    // Checks if input is only a numbers
-    else if (!isNaN(inputText)) {
-        alert("Please enter text to analyze")
-    }
-    else {
-        return true;
-    }
+    return true;
 }
 export { checkForInput }
