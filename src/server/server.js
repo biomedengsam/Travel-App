@@ -78,7 +78,7 @@ const getDataFromWeatherApi = async (weatherApi, geo_data) => {
 app.post('/api', async function (req, res) {
     // console.log(req.body.text)
     // Get lang and lat from geonames api
-    let city = req.body.text;
+    let city = req.body.city;
     console.log(city);
 
     // let url = `http://api.geonames.org/searchJSON?q=${req.body.text}&username=${username}&maxRows=1`
@@ -91,7 +91,7 @@ app.post('/api', async function (req, res) {
         const geo_data = await (getDataFromGeoNames(username, city));
         console.log(geo_data);
         const weather_data = await (getDataFromWeatherApi(weatherApi, geo_data));
-        console.log(weather_data);
+        console.log(weather_data.weather.data);
 
 
         // console.log(geo_data[0].lat);
@@ -103,7 +103,7 @@ app.post('/api', async function (req, res) {
         // let lang = res.data.geonames[0].lng;
         // let weatherUrl = ``
         // const weather = await axios.get()
-        // res.send();
+        res.send(weather_data);
     } catch (error) {
         console.error(error);
     }
