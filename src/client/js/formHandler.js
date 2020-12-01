@@ -20,10 +20,12 @@ const postData = async (url = '', data = {}) => {
         body: JSON.stringify(data),
     });
     try {
-        const newData = await response.json();
-        console.log(newData);
-        // updateUi(newData);
-        return newData;
+        const res = await response.json();
+        // lat = res.data.geonames[0].lat;
+        // let lang = res.data.geonames[0].lng;
+
+        // console.log(lang);
+        return res;
     }
     catch (error) {
         console.log("error", error);

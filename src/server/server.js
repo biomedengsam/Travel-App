@@ -7,8 +7,10 @@ const CircularJSON = require("circular-json");
 dotenv.config();
 
 const app = express()
-let userName = process.env.user_name;
-console.log(`your userName: ${process.env.user_name}`);
+const username = process.env.user_name;
+const weatherApi = process.env.weatherApi;
+console.log(`your userName: ${username}`);
+console.log(`your weatherApi: ${weatherApi}`);
 
 /* Dependencies */
 const bodyParser = require('body-parser');
@@ -36,17 +38,72 @@ app.listen(8081, function () {
     console.log('Example app listening on port 8081!')
 })
 
+const getDataFromGeoNames = async (username, city) => {
+
+    const url = `http://api.geonames.org/searchJSON?q=${city}&maxRows=1&username=${username}`;
+    try {
+        return await axios.get(url)
+            .then(res => {
+                // console.log(res.data.geonames[0].lat);
+                return {
+                    lat: res.data.geonames[0].lat,
+                    lng: res.data.geonames[0].lng
+                }
+            });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+// weather data
+const getDataFromWeatherApi = async (weatherApi, geo_data) => {
+
+    const url = `http://api.weatherbit.io/v2.0/current?key=${weatherApi}&lat=${geo_data.lat}&lon=${geo_data.lng}`;
+    try {
+        return await axios.get(url)
+            .then(res => {
+                // console.log(res.data);
+                // console.log(res.data.geonames[0].lat);
+                return {
+
+                    weather: res.data
+
+                }
+            });
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 app.post('/api', async function (req, res) {
     // console.log(req.body.text)
-    let url = `http://api.geonames.org/searchJSON?q=${req.body.text}&username=${userName}&maxRows=1`
+    // Get lang and lat from geonames api
+    let city = req.body.text;
+    console.log(city);
+
+    // let url = `http://api.geonames.org/searchJSON?q=${req.body.text}&username=${username}&maxRows=1`
     // let x = `${url}${req.body.text}&maxRows=1&username=${userName}`
     // console.log(x);
 
     try {
-        const response = await axios.get(url);
-        resData = CircularJSON.stringify(response)
-        console.log(JSON.parse(resData));
-        res.send(JSON.parse(resData));
+        // console.log(getDataFromGeoNames(username, city));
+
+        const geo_data = await (getDataFromGeoNames(username, city));
+        console.log(geo_data);
+        const weather_data = await (getDataFromWeatherApi(weatherApi, geo_data));
+        console.log(weather_data);
+
+
+        // console.log(geo_data[0].lat);
+        // const response = await axios.get(url);
+        // resData = CircularJSON.stringify(response)
+        // console.log(JSON.parse(resData));
+        // res = JSON.parse(resData);
+        // let lat = res.data.geonames[0].lat;
+        // let lang = res.data.geonames[0].lng;
+        // let weatherUrl = ``
+        // const weather = await axios.get()
+        // res.send();
     } catch (error) {
         console.error(error);
     }
