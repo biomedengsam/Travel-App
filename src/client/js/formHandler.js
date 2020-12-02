@@ -47,6 +47,8 @@ const postData = async (url = '', data = {}) => {
 }
 
 
+
+
 // Update UI function
 const updateUi = (res) => {
     $('#output').css('display', 'block');
