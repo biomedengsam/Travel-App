@@ -1,5 +1,6 @@
 import axios from "axios";
 import $ from "jquery";
+export let data = "hello";
 
 // Fixing Cross Browser Compatibility for Input type–date
 (function () {
@@ -66,7 +67,7 @@ function handleSubmit(event) {
     event.preventDefault()
     // check what text was put into the form field
     let info = {
-        city: $('#city').val(),
+        destination: $('#destination').val(),
         departure_date: $('#departure').val(),
         return_date: $('#return').val()
     }
