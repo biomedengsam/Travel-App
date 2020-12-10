@@ -1,43 +1,5 @@
-var path = require('path')
-const express = require('express')
-const dotenv = require('dotenv');
-const fetch = require("node-fetch");
+
 const axios = require('axios');
-const CircularJSON = require("circular-json");
-dotenv.config();
-
-const app = express();
-const username = process.env.user_name;
-const weatherApi = process.env.weatherApi;
-const pixabayKey = process.env.pixabayKey;
-let allTrips = [];
-
-/* Dependencies */
-const bodyParser = require('body-parser');
-
-/* Middleware*/
-//Configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-// Cors for cross origin allowance
-const cors = require('cors');
-app.use(cors());
-
-app.use(express.static('dist'))
-
-console.log(__dirname)
-
-app.get('/', function (req, res) {
-    res.sendFile('dist/index.html')
-    // res.sendFile(path.resolve('src/client/views/index.html'))
-})
-
-// designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
-})
-
 const getDataFromGeoNames = async (username, destination) => {
     const url = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=1&username=${username}`;
     try {
@@ -105,6 +67,7 @@ const getCountryInfo = async (geo_data) => {
 const getLocationImage = async (pixabayKey, location, country) => {
     //Check for whitespace and replace the spaces with + sign
     // location = location.replace(/\s/g, '+');
+    console.log('begin get image');
     const url = `https://pixabay.com/api/?q=${encodeURIComponent(location)}&key=${pixabayKey}&image_type=photo`;
     try {
 
@@ -127,7 +90,7 @@ const getLocationImage = async (pixabayKey, location, country) => {
     }
 }
 
-const weather = async (geo_data, remainingDays, departureDate) => {
+const weather = async (geo_data, remainingDays, departureDate, weatherApi) => {
     if (remainingDays >= 7) {
         // use the forecast api
         const weather_data = await (getForecastWeatherApi(weatherApi, geo_data));
@@ -146,58 +109,3 @@ const weather = async (geo_data, remainingDays, departureDate) => {
         return weather_data
     }
 }
-
-const api = async (input) => {
-    let destination = input.destination;
-    let departureDate = input.departure_date;
-    let returnDate = input.return_date;
-    console.log(destination);
-    let today = new Date();
-    let departure = new Date(departureDate);
-    let returnDt = new Date(returnDate);
-    let remainingDays = parseInt((departure - today) / (24 * 3600 * 1000));
-    let tripDuration = parseInt((returnDt - departure) / (24 * 3600 * 1000));
-    try {
-        // Get lang and lat from geonames api
-        const geo_data = await (getDataFromGeoNames(username, destination));
-        // Get info about the destination from the REST Countries API using country code from geonames
-        const countryInfo = await (getCountryInfo(geo_data));
-        // Get image for destination from Pixabay
-        const destImage = await (getLocationImage(pixabayKey, destination, countryInfo.name));
-        const weatherdata = await (weather(geo_data, remainingDays, departureDate));
-        return {
-            destination: destination,
-            country: countryInfo.name,
-            capital: countryInfo.capital,
-            region: countryInfo.region,
-            population: countryInfo.population,
-            //languages and currencies return an array with an object inside with the data
-            languages: countryInfo.languages,
-            currencies: countryInfo.currencies,
-            flagUrl: countryInfo.flag,
-            departure: departureDate,
-            return: returnDate,
-            remainingDays: remainingDays,
-            tripDuration: tripDuration,
-            imageUrl: destImage,
-            weather: weatherdata,
-        }
-    } catch (error) {
-        console.error(error);
-    }
-
-}
-
-app.post('/api', async function (req, res) {
-    try {
-        const apiData = await api(req.body);
-        console.log(apiData);
-        allTrips.push(apiData);
-        console.log(allTrips);
-        res.send(apiData)
-
-    } catch (error) {
-        console.error(error);
-    }
-})
-
