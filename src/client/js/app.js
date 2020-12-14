@@ -1,5 +1,5 @@
 import $ from "jquery";
-// import { apiData } from './formHandler'
+
 // let data = info;
 // const form = document.querySelector('form')
 // const ul = document.querySelector('ul')
@@ -20,33 +20,6 @@ const trip = (text) => {
     p.textContent = text.destination
     $('#myTrips').append(p)
 }
-// function ui() {
-//     if (data.length > 1) {
-//         data.forEach((item) => {
-//             trip(item);
-//         })
-//     } else {
-//         trip(data);
-
-//     }
-// }
-
-
-// const liMaker = (text) => {
-//     const li = document.createElement('li')
-//     li.textContent = text
-//     ul.appendChild(li)
-// }
-
-
-// form.addEventListener('submit', function (e) {
-//     e.preventDefault()
-
-//     itemsArray.push(apiData)
-//     localStorage.setItem('items', JSON.stringify(itemsArray))
-//     trip(apiData)
-//     apiData = ''
-// })
 
 
 function appinfo(apiData) {
@@ -55,6 +28,7 @@ function appinfo(apiData) {
     trip(apiData)
     apiData = ''
 }
+// To clear all trips
 // button.addEventListener('click', function () {
 //     localStorage.clear()
 //     while (ul.firstChild) {

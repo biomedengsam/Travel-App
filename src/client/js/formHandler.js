@@ -51,9 +51,15 @@ function handleSubmit(event) {
         postData('http://localhost:8081/api', info)
             .then(function (res) {
                 // console.log(res.data);
-                let apiData = res.data;
+                apiData = res.data;
                 console.log(apiData);
-                Client.appinfo(apiData);
+                if (apiData === false) {
+                    alert('Destination Not Found');
+                } else {
+                    Client.appinfo(apiData);
+                }
+
+
                 // info.push(res.data)
                 // // Error city not found
                 // if (res.data.totalResultsCount == 0) {

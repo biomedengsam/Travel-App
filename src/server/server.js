@@ -44,10 +44,16 @@ const getDataFromGeoNames = async (username, destination) => {
         return await axios.get(url)
             .then(res => {
                 // console.log(res.data);
-                return {
-                    lat: res.data.geonames[0].lat,
-                    lng: res.data.geonames[0].lng,
-                    countryCode: res.data.geonames[0].countryCode
+                if (res.data.totalResultsCount === 0) {
+
+                    return false
+                }
+                else {
+                    return {
+                        lat: res.data.geonames[0].lat,
+                        lng: res.data.geonames[0].lng,
+                        countryCode: res.data.geonames[0].countryCode
+                    }
                 }
             });
     } catch (e) {
@@ -160,28 +166,36 @@ const api = async (input) => {
     try {
         // Get lang and lat from geonames api
         const geo_data = await (getDataFromGeoNames(username, destination));
-        // Get info about the destination from the REST Countries API using country code from geonames
-        const countryInfo = await (getCountryInfo(geo_data));
-        // Get image for destination from Pixabay
-        const destImage = await (getLocationImage(pixabayKey, destination, countryInfo.name));
-        const weatherdata = await (weather(geo_data, remainingDays, departureDate));
-        return {
-            destination: destination,
-            country: countryInfo.name,
-            capital: countryInfo.capital,
-            region: countryInfo.region,
-            population: countryInfo.population,
-            //languages and currencies return an array with an object inside with the data
-            languages: countryInfo.languages,
-            currencies: countryInfo.currencies,
-            flagUrl: countryInfo.flag,
-            departure: departureDate,
-            return: returnDate,
-            remainingDays: remainingDays,
-            tripDuration: tripDuration,
-            imageUrl: destImage,
-            weather: weatherdata,
+        if (geo_data === false) {
+            console.log('false');
+            return false
         }
+        else {
+            // Get info about the destination from the REST Countries API using country code from geonames
+            const countryInfo = await (getCountryInfo(geo_data));
+            // Get image for destination from Pixabay
+            const destImage = await (getLocationImage(pixabayKey, destination, countryInfo.name));
+            const weatherdata = await (weather(geo_data, remainingDays, departureDate));
+            return {
+                destination: destination,
+                country: countryInfo.name,
+                capital: countryInfo.capital,
+                region: countryInfo.region,
+                population: countryInfo.population,
+                //languages and currencies return an array with an object inside with the data
+                languages: countryInfo.languages,
+                currencies: countryInfo.currencies,
+                flagUrl: countryInfo.flag,
+                departure: departureDate,
+                return: returnDate,
+                remainingDays: remainingDays,
+                tripDuration: tripDuration,
+                imageUrl: destImage,
+                weather: weatherdata,
+            }
+
+        }
+
     } catch (error) {
         console.error(error);
     }
@@ -192,6 +206,7 @@ app.post('/api', async function (req, res) {
     try {
         const apiData = await api(req.body);
         console.log(apiData);
+        // delete allTrips when doe just for debugging
         allTrips.push(apiData);
         console.log(allTrips);
         res.send(apiData)
