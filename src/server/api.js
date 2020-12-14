@@ -1,4 +1,4 @@
-
+// this file is not used
 const axios = require('axios');
 const getDataFromGeoNames = async (username, destination) => {
     const url = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=1&username=${username}`;
@@ -6,10 +6,16 @@ const getDataFromGeoNames = async (username, destination) => {
         return await axios.get(url)
             .then(res => {
                 // console.log(res.data);
-                return {
-                    lat: res.data.geonames[0].lat,
-                    lng: res.data.geonames[0].lng,
-                    countryCode: res.data.geonames[0].countryCode
+                if (res.data.totalResultsCount === 0) {
+                    alert('Destination Not Found');
+                    return false
+                }
+                else {
+                    return {
+                        lat: res.data.geonames[0].lat,
+                        lng: res.data.geonames[0].lng,
+                        countryCode: res.data.geonames[0].countryCode
+                    }
                 }
             });
     } catch (e) {
