@@ -1,6 +1,7 @@
 import axios from "axios";
 import $ from "jquery";
-export let data = "hello";
+export let apiData;
+// import appinfo from './app'
 
 // Fixing Cross Browser Compatibility for Input type–date
 (function () {
@@ -9,30 +10,6 @@ export let data = "hello";
     }
 })();
 
-// Post function
-// const postData = async (url = '', data = {}) => {
-//     const response = await fetch(url, {
-//         method: 'POST',
-//         credentials: 'same-origin',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         // Body data type must match "Content-Type" header
-//         body: JSON.stringify(data),
-//     });
-//     try {
-//         const res = await response.json();
-//         // lat = res.data.geonames[0].lat;
-//         // let lang = res.data.geonames[0].lng;
-
-//         console.log(res);
-//         return res;
-//     }
-//     catch (error) {
-//         console.log("error", error);
-//     }
-
-// }
 
 const postData = async (url = '', data = {}) => {
 
@@ -46,9 +23,6 @@ const postData = async (url = '', data = {}) => {
     }
 
 }
-
-
-
 
 // Update UI function
 const updateUi = (res) => {
@@ -76,7 +50,11 @@ function handleSubmit(event) {
         //  Post request
         postData('http://localhost:8081/api', info)
             .then(function (res) {
-                console.log(res);
+                // console.log(res.data);
+                let apiData = res.data;
+                console.log(apiData);
+                Client.appinfo(apiData);
+                // info.push(res.data)
                 // // Error city not found
                 // if (res.data.totalResultsCount == 0) {
                 //     alert('City Not Found');

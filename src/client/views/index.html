@@ -1,50 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>NLP</title>
-    </head>
-    <body>
-        <header>
-            <div class="logo">
-                <img id="logo" class="" alt="logo">
-                <span>NLP</span>
-            </div>
-        </header>
-        <main>
-            <h1 class="mt-3">Natural language processing</h1>
-            <section>
-                <form class="form-group" onsubmit="return handleSubmit(event)">
-                    <label for="destination">Enter destination to travel:</label>
-                    <input id="destination" class="form-control " type="text" name="input" value=""  placeholder="Enter text to analyze" required>
-                     <label for="departure">Enter departure date:</label>
-                    <input id="departure" class="form-control dateText" type="date" name="input" value="" required >
-                     <label for="return">Enter return date:</label>
-                    <input id="return" class="form-control dateText" type="date" name="input" value="" required>
-                    <input id="submit" type="submit" class="btn btn-light mt-3" name="" value="Submit" onclick="return Client.handleSubmit(event)" onsubmit="return handleSubmit(event)">
-                </form>
-            <section>
-            <section id="output">
-                <h2>Form Results:</h2><hr>
-                <div class="result">
-                    <div id="results">
-                        <p class="h5">lng: <span id="lng"></span></p>
-                        <p class="h5">lat: <span id="lat"></span></p>
-                        <p class="h5">Subjectivity: <span id="subjectivity"></span></p>
-                        <p class="h5">Confidence: <span id="confidence"></span></p>
-                        <p class="h5">Irony: <span id="irony"></span></p>
-                    </div>
-                    <img id="board" class="pt-3" alt="board with faces smile,sad,neutral">
-                </div>
-            </section>
-           
-        </main>
-        <footer>
-            <p>Copyright © NLP. All Rights Reserved</p>
-        </footer>
-        <script src="../../../dist/main.js"></script>
-        <!-- <script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Travel Planner</title>
+  </head>
+  <body>
+    <!-- <main> -->
+    <div id="bg"></div>
+    <section id="landing">
+      <h1>Travel Planner</h1>
+      <blockquote>
+        “Twenty years from now you will be more disappointed by the things that
+        you didn’t do than by the ones you did do. So throw off the bowlines.
+        Sail away from the safe harbor. Catch the trade winds in your sails.
+        Explore. Dream. Discover.” <cite>-Mark Twain</cite>
+      </blockquote>
+      <!-- may change the id name -->
+      <button id="enter" type="button" name="button">Enter</button>
+    </section>
+    <div id="dimmed-bg"></div>
+    <section id="full-site">
+      <header>
+        <div class="logo">
+          <img id="logo" class="" alt="logo" height="120" />
+        </div>
+      </header>
+      <h1>Travel Planner</h1>
+
+      <form class="form-group">
+        <label for="destination">Enter destination to travel:</label>
+        <input
+          id="destination"
+          class="form-control"
+          type="text"
+          name="input"
+          value=""
+          placeholder="Enter text to analyze"
+          required
+        />
+        <label for="departure">Enter departure date:</label>
+        <input
+          id="departure"
+          class="form-control dateText"
+          type="date"
+          name="input"
+          value=""
+          required
+        />
+        <label for="return">Enter return date:</label>
+        <input
+          id="return"
+          class="form-control dateText"
+          type="date"
+          name="input"
+          value=""
+          required
+        />
+        <input
+          id="submit"
+          type="submit"
+          class="btn btn-light mt-3"
+          name=""
+          value="Submit"
+        />
+      </form>
+      <!-- </main> -->
+      <section id="myTrips"></section>
+      <footer>
+        <p>Copyright © Travel Planner. All Rights Reserved</p>
+      </footer>
+    </section>
+    <!-- <script src="../../../dist/main.js"></script> -->
+    <!-- <script>
             // Check that service workers are supported
             if ('serviceWorker' in navigator) {
                 // Use the window load event to keep the page load performant
@@ -53,5 +81,5 @@
                 });
             }
         </script> -->
-    </body>
+  </body>
 </html>
