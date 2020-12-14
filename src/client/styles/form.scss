@@ -1,9 +1,22 @@
 @import "~bootstrap/scss/bootstrap";
 form {
+  width: 50%;
   border: 1px solid #545454;
   border-radius: 3px;
   padding: 40px;
-  background-color: #384c5c;
+  background-color: rgba($color: #384c5c, $alpha: 0.3);
+  margin: auto;
+  animation: slide-right;
+  @keyframes slide-right {
+    from {
+      margin-left: -100%;
+      width: 100%;
+    }
+    to {
+      margin-left: 0%;
+      width: 100%;
+    }
+  }
 
   input {
     padding: 5px 20px;

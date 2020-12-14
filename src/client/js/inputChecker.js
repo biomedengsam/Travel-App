@@ -1,5 +1,5 @@
-import { data } from "./formHandler";
-console.log(data);
+// import { data } from "./formHandler";
+// console.log(data);
 // check the date of return (return date is valid) is after date of departure
 const checkValidDate = (input) => {
     //  todays date minus the departure date 
@@ -16,6 +16,11 @@ const checkValidDate = (input) => {
 
     if (input.return_date < input.departure_date) {
         alert("Invalid return date");
+        // console.log(false);
+        return false;
+    }
+    else if (dep < (today)) {
+        alert("Invalid departure date");
         // console.log(false);
         return false;
     }
