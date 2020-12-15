@@ -1,12 +1,12 @@
 import $ from "jquery";
 function data() {
-    let itemsArray = localStorage.getItem('items')
-        ? JSON.parse(localStorage.getItem('items'))
+    let tripsArray = localStorage.getItem('trips')
+        ? JSON.parse(localStorage.getItem('trips'))
         : []
-    console.log('items array');
-    console.log(itemsArray);
-    localStorage.setItem('items', JSON.stringify(itemsArray))
-    const data = JSON.parse(localStorage.getItem('items'))
+    console.log('trips array');
+    console.log(tripsArray);
+    localStorage.setItem('trips', JSON.stringify(tripsArray))
+    const data = JSON.parse(localStorage.getItem('trips'))
     console.log('data');
     console.log(data);
 
