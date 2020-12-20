@@ -44,7 +44,7 @@ function tripData() {
 
 
                 let content =
-                    ` <div class="card" id = 'card' >
+                    ` <div class="card">
                     <span id="infoTrip" style="display:none;">${data.indexOf(info)}</span>
               <img src="${info.imageUrl}" class="card-img-top countryImg" alt="photo of ${info.country}">
               <div class="card-body">
@@ -65,14 +65,14 @@ function tripData() {
                         <div>
                             <p>Departure Date:${info.departure}</p>
                             <p>Return Date:${info.return}</p>
-                            <p> ${info.remainingDays} Days left for your ${info.tripDuration} day trip to ${info.destination}</p>
-                            <button  type="button" name="button" data-tripIndex="${data.indexOf(info)}"  class="btn btn-danger delete" onclick="Client.deleteTrip(${data.indexOf(info)})" >Delete Trip</button>
+                            <p> <strong>${info.remainingDays} Days left for your ${info.tripDuration} day trip to ${info.destination}</strong></p>
+                            <a target="_blank" href="https://en.wikivoyage.org/wiki/${info.country}" class="btn btn-primary" >For more info about ${info.country}</a>
                         </div>
                     </div>
-                    <a   target="_blank" href="https://en.wikivoyage.org/wiki/${info.country}" class="btn btn-primary" >For more info about ${info.country}</a>
+                         <button  type="button" name="button" data-tripIndex="${data.indexOf(info)}"  class="btn btn-danger delete" onclick="Client.deleteTrip(this)" >Delete Trip</button>
                     </div >
-                    <div class="col-sm-4" style="background-color: steelblue; text-align: center;">
-                    <h3>weather for trip time</h3>
+                    <div class="col-sm-4 weather">
+                    <h3>weather on trip date</h3>
                     <h6>Description</h6>
                     <p>${info.weather.weatherInfo.description}</p>
                     <img class="weather-icon"src="https://www.weatherbit.io/static/img/icons/${info.weather.weatherInfo.icon}.png ">
@@ -95,13 +95,13 @@ function tripData() {
 }
 
 // Delete trip
-const deleteTrip = (x) => {
+const deleteTrip = (e) => {
     // console.log((e.currentTarget));
     console.log('delete trip');
     let tripsArray = JSON.parse(localStorage.getItem('trips'))
     console.log(tripsArray);
     console.log(tripsArray.length);
-    // let x = $(e.currentTarget).getAttribute('data-tripIndex');
+    let x = e.getAttribute('data-tripIndex');
 
 
     console.log(x);
