@@ -1,6 +1,6 @@
 import axios from "axios";
 import $ from "jquery";
-export let apiData;
+let apiData;
 // import appinfo from './app'
 
 // Fixing Cross Browser Compatibility for Input type–date
@@ -54,7 +54,7 @@ function handleSubmit(event) {
                 apiData = res.data;
                 console.log(apiData);
                 if (apiData === false) {
-                    alert('Destination Not Found');
+                    alert(`Destination Not Found. Make sure you write the correct spelling or specify the destination`);
                 } else {
                     Client.appinfo(apiData);
                 }

@@ -39,7 +39,7 @@ app.listen(8081, function () {
 })
 
 const getDataFromGeoNames = async (username, destination) => {
-    const url = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=1&username=${username}`;
+    const url = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=2&username=${username}`;
     try {
         return await axios.get(url)
             .then(res => {
@@ -52,7 +52,9 @@ const getDataFromGeoNames = async (username, destination) => {
                     return {
                         lat: res.data.geonames[0].lat,
                         lng: res.data.geonames[0].lng,
-                        countryCode: res.data.geonames[0].countryCode
+                        // Some country code doesn't appear in the first row(undefined), if so look in the next row
+                        countryCode: res.data.geonames[0].countryCode ? res.data.geonames[0].countryCode
+                            : res.data.geonames[1].countryCode
                     }
                 }
             });
@@ -70,7 +72,8 @@ const getDataFromWeatherApi = async (weatherApi, geo_data) => {
             .then(res => {
                 console.log(res.data);
                 return {
-                    temp: res.data.data[0].temp
+                    temp: `${res.data.data[0].temp} °C`,
+                    weatherInfo: res.data.data[0].weather
                 }
             });
     } catch (e) {
@@ -141,8 +144,8 @@ const weather = async (geo_data, remainingDays, departureDate) => {
         // Find weather data for the departure date
         let weather = weather_data.find(date => date.datetime == departureDate);
         return {
-            min: weather.low_temp,
-            max: weather.max_temp
+            temp: `Low : ${weather.low_temp}°C / High : ${weather.max_temp}°C`,
+            weatherInfo: weather.weather
         }
     }
     else {
@@ -155,6 +158,8 @@ const weather = async (geo_data, remainingDays, departureDate) => {
 
 const api = async (input) => {
     let destination = input.destination;
+    // Making the first letter capital
+    let dest = destination[0].toUpperCase() + destination.substring(1);
     let departureDate = input.departure_date;
     let returnDate = input.return_date;
     console.log(destination);
@@ -166,7 +171,9 @@ const api = async (input) => {
     try {
         // Get lang and lat from geonames api
         const geo_data = await (getDataFromGeoNames(username, destination));
-        if (geo_data === false) {
+        console.log('geo_data');
+        console.log(geo_data);
+        if (geo_data === false || geo_data.countryCode === undefined) {
             console.log('false');
             return false
         }
@@ -177,7 +184,7 @@ const api = async (input) => {
             const destImage = await (getLocationImage(pixabayKey, destination, countryInfo.name));
             const weatherdata = await (weather(geo_data, remainingDays, departureDate));
             return {
-                destination: destination,
+                destination: dest,
                 country: countryInfo.name,
                 capital: countryInfo.capital,
                 region: countryInfo.region,

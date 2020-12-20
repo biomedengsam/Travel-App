@@ -27,46 +27,51 @@
         </div>
       </header>
       <h1>Travel Planner</h1>
+      <div class="form">
+        <form class="form-group">
+          <label for="destination">Enter destination to travel:</label>
+          <input
+            id="destination"
+            class="form-control"
+            type="text"
+            name="input"
+            value=""
+            placeholder="Enter text to analyze"
+            required
+          />
+          <label for="departure">Enter departure date:</label>
+          <input
+            id="departure"
+            class="form-control dateText"
+            type="date"
+            name="input"
+            value=""
+            required
+          />
+          <label for="return">Enter return date:</label>
+          <input
+            id="return"
+            class="form-control dateText"
+            type="date"
+            name="input"
+            value=""
+            required
+          />
+          <input
+            id="submit"
+            type="submit"
+            class="btn btn-light mt-3"
+            name=""
+            value="Submit"
+          />
+        </form>
+        <!-- <img id= 'img' src=''> -->
+      </div>
 
-      <form class="form-group">
-        <label for="destination">Enter destination to travel:</label>
-        <input
-          id="destination"
-          class="form-control"
-          type="text"
-          name="input"
-          value=""
-          placeholder="Enter text to analyze"
-          required
-        />
-        <label for="departure">Enter departure date:</label>
-        <input
-          id="departure"
-          class="form-control dateText"
-          type="date"
-          name="input"
-          value=""
-          required
-        />
-        <label for="return">Enter return date:</label>
-        <input
-          id="return"
-          class="form-control dateText"
-          type="date"
-          name="input"
-          value=""
-          required
-        />
-        <input
-          id="submit"
-          type="submit"
-          class="btn btn-light mt-3"
-          name=""
-          value="Submit"
-        />
-      </form>
       <!-- </main> -->
+      <h1 class="trips mt-3">My Trips</h1>
       <section id="myTrips"></section>
+
       <footer>
         <p>Copyright © Travel Planner. All Rights Reserved</p>
       </footer>
