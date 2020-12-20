@@ -26,7 +26,7 @@ const trip = (info) => {
 
 
     let content =
-        ` <div class="card" id = 'card' >
+        ` <div class="card" >
                     <span id="infoTrip" style="display:none;">${tripIndex}</span>
               <img src="${info.imageUrl}" class="card-img-top countryImg" alt="photo of ${info.country}">
               <div class="card-body">
@@ -48,13 +48,13 @@ const trip = (info) => {
                             <p>Departure Date:${info.departure}</p>
                             <p>Return Date:${info.return}</p>
                             <p> ${info.remainingDays} Days left for your ${info.tripDuration} day trip to ${info.destination}</p>
-                            <button  type="button" name="button" data-tripIndex="${tripIndex}"  class="btn btn-danger delete" onclick="Client.deleteTrip(${tripIndex})">Delete Trip</button>
+                             <a target="_blank" href="https://en.wikivoyage.org/wiki/${info.country}" class="btn btn-primary">For more info about ${info.country}</a>
                         
                         </div>
-                    </div>  
-                    <a   target="_blank" href="https://en.wikivoyage.org/wiki/${info.country}" class="btn btn-primary">For more info about ${info.country}</a>
+                    </div>
+                     <button  type="button" name="button" data-tripIndex="${tripIndex}"  class="btn btn-danger delete" onclick="Client.deleteTrip(this)" >Delete Trip</button>
                     </div >
-                    <div class="col-sm-4" style="background-color: steelblue; text-align: center;">
+                    <div class="col-sm-4 weather">
                     <h3>weather for trip time</h3>
                     <h6>Description</h6>
                     <p>${info.weather.weatherInfo.description}</p>
