@@ -24,6 +24,13 @@ const trip = (info) => {
     let currencies = currency.toString()
     let languages = lang.toString()
 
+    //Switch visibility on for the title of my trips section.And delete all trips button
+
+    $(".trips").css("visibility", "visible");
+    $(".all-trips").css("visibility", "visible");
+
+
+
 
     let content =
         ` <div class="card" >
@@ -114,9 +121,6 @@ function appinfo(apiData) {
 // To clear all trips
 // button.addEventListener('click', function () {
 //     localStorage.clear()
-//     while (ul.firstChild) {
-//         ul.removeChild(ul.firstChild)
-//     }
 // })
 export {
     appinfo

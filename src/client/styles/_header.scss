@@ -1,12 +1,25 @@
 // @import "~bootstrap/scss/bootstrap";
 // @import url("https://fonts.googleapis.com/css2?family=Galada&display=swap");
-// header {
-//   display: flex;
-//   justify-content: space-between;
-//   // padding: 10px 20px;
-//   background-color: #dfdcdc;
+header {
+  display: flex;
+  .nav {
+    justify-content: space-between;
+  }
+
+  // padding: 10px 20px;
+  //   background-color: #dfdcdc;
+}
+
+// li {
+//   display: inline-block;
+//   margin: 1rem;
 // }
 
+.all-trips {
+  visibility: hidden;
+  align-self: center;
+  margin: 1rem;
+}
 // .logo {
 //   font-family: Galada, Arial, Helvetica, sans-serif;
 //   font-size: 2rem;

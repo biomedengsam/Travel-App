@@ -1,8 +1,8 @@
 // @import "~bootstrap/scss/bootstrap";
-@function px-to-rem($size) {
-  $value: $size / 16px;
-  @return #{$value}rem;
-}
+// @function px-to-rem($size) {
+//   $value: $size / 16px;
+//   @return #{$value}rem;
+// }
 
 body {
   display: flex;

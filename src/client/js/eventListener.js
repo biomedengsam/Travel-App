@@ -1,5 +1,4 @@
 import $ from "jquery";
-
 // data.reverse()
 function tripData() {
 
@@ -11,16 +10,13 @@ function tripData() {
     localStorage.setItem('trips', JSON.stringify(tripsArray))
     let data = JSON.parse(localStorage.getItem('trips'))
 
-
     // Title of my trips section.No trips stay hidden
     if (data.length !== 0) {
         $(".trips").css("visibility", "visible");
+        $(".all-trips").css("visibility", "visible");
     }
 
     const trip = (text) => {
-        // const card = document.createElement('p')
-        // p.textContent = text.destination
-        // $('#myTrips').append(`<section class='card' ><p>${text.destination}</p></section>`)
         $('#myTrips').append(text)
     }
     function ui() {
@@ -157,12 +153,19 @@ function enterApp() {
     // $("#register-side-bar").css("transform", "translate(0)");
 }
 
-
-
+// To clear all trips
+const deleteAll = () => {
+    localStorage.clear();
+    $('.card').remove();
+    tripData();
+    $(".trips").css("visibility", "hidden");
+    $(".all-trips").css("visibility", "hidden");
+}
 
 
 export {
     enterApp,
     deleteTrip,
-    tripData
+    tripData,
+    deleteAll
 }
