@@ -26,26 +26,24 @@ app.use(cors());
 
 app.use(express.static('dist'))
 
-console.log(__dirname)
 
 app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
-    // res.sendFile(path.resolve('src/client/views/index.html'))
 })
 
-// designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+module.exports = app
+// For jest testing
+app.get('/test', async (req, res) => {
+    res.json({ message: 'pass!' })
 })
 
+// Get data from geoNames api
 const getDataFromGeoNames = async (username, destination) => {
     const url = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=2&username=${username}`;
     try {
         return await axios.get(url)
             .then(res => {
-                // console.log(res.data);
                 if (res.data.totalResultsCount === 0) {
-
                     return false
                 }
                 else {
@@ -58,13 +56,14 @@ const getDataFromGeoNames = async (username, destination) => {
                     }
                 }
             });
-    } catch (e) {
+    }
+    catch (e) {
         console.log(e);
     }
 }
 
 //Get current weather data
-const getDataFromWeatherApi = async (weatherApi, geo_data) => {
+const getCurrentWeatherApi = async (weatherApi, geo_data) => {
 
     const url = `http://api.weatherbit.io/v2.0/current?key=${weatherApi}&lat=${geo_data.lat}&lon=${geo_data.lng}`;
     try {
@@ -151,7 +150,7 @@ const weather = async (geo_data, remainingDays, departureDate) => {
     else {
         // Use current weather api
         console.log('current weather');
-        const weather_data = await (getDataFromWeatherApi(weatherApi, geo_data));
+        const weather_data = await (getCurrentWeatherApi(weatherApi, geo_data));
         return weather_data
     }
 }
@@ -222,4 +221,3 @@ app.post('/api', async function (req, res) {
         console.error(error);
     }
 })
-

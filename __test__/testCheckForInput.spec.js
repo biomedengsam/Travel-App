@@ -8,9 +8,14 @@ describe("Testing checkForInput definition", () => {
 });
 
 describe("Testing the input functionality", () => {
-    let inputText = "";
+    let input = {
+        destination: '',
+        departure_date: '3020-12-26',
+        return_date: '3020-12-30'
+    }
+
     window.alert = jest.fn()
     test("Testing the checkForInput(inputText) function", () => {
-        expect(checkForInput(inputText)).toEqual(false);
+        expect(checkForInput(input)).toEqual(false);
     })
 });
