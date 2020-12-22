@@ -1,8 +1,8 @@
 @import "~bootstrap/scss/bootstrap";
-@function px-to-rem($size) {
-  $value: $size / 16px;
-  @return #{$value}rem;
-}
+// @function px-to-rem($size) {
+//   $value: $size / 16px;
+//   @return #{$value}rem;
+// }
 
 form {
   width: 50%;
@@ -32,15 +32,15 @@ form {
     margin: 10px 0;
   }
 
-  label {
-    font-size: 2rem;
-    color: white;
-  }
-
   #submit {
     font-size: 1.5rem;
     color: #384c5c;
   }
+}
+
+label {
+  font-size: 2rem;
+  color: white;
 }
 
 .form {
@@ -56,12 +56,26 @@ form {
   //   // border-radius: 1000px;
   // }
 }
+
+#submit {
+  &:hover {
+    background-color: #151223;
+    color: white;
+  }
+}
+
 @media only screen and (max-width: 650px) {
   form {
     width: 100%;
     margin: 0;
+    label {
+      font-size: 1.2rem;
+    }
   }
+}
+
+@media only screen and (max-width: 768px) {
   label {
-    font-size: 1.5rem;
+    font-size: 1.29rem;
   }
 }
