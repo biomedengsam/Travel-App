@@ -4,6 +4,23 @@ import { enterApp } from './js/eventListener'
 import { appinfo } from './js/app'
 import { deleteTrip } from './js/eventListener'
 import { deleteAll } from './js/eventListener'
+// function importAll(r) {
+//     let images = {};
+//     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+//     return images;
+// }
+
+// export const images = importAll(require.context('./../media/icons', false, /\.png$/));
+
+
+// function importAll(r) {
+//     let images = {};
+//     r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+//     return images;
+// }
+
+// export const images = importAll(require.context('./../media/icons', false, /\.png$/));
+
 // require.context("./media/icons", useSubdirectories = true, regExp = /\.png$/);
 // function importAll(r) {
 //     let images = {};
@@ -51,11 +68,9 @@ import flight from './media/flight.jpg';
 import flying from './media/flying.jpg';
 import plane from './media/plane.jpg'
 import $ from "jquery";
-// import boardN from './media/boardN.jpg';
-// import boardNeg from './media/boardNeg.jpg';
 import logo from './media/logo.png';
 import datepicker from '../../node_modules/jquery-ui/ui/widgets/datepicker';
-// import 'bootstrap';
+
 let logoImg = document.getElementById('logo');
 logoImg.src = logo;
 let bgImg = document.getElementById('bg');
@@ -68,7 +83,6 @@ $('#enter').on('click', enterApp)
 // event listener on submitting form
 $('form').on('submit', handleSubmit);
 $('.all-trips').on('click', deleteAll);
-
 
 export {
 

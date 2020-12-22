@@ -1,7 +1,6 @@
 import axios from "axios";
 import $ from "jquery";
 let apiData;
-// import appinfo from './app'
 
 // Fixing Cross Browser Compatibility for Input type–date
 (function () {
@@ -10,8 +9,7 @@ let apiData;
     }
 })();
 
-
-const postData = async (url = '', data = {}) => {
+export const postData = async (url = '', data = {}) => {
 
     try {
         const response = await axios.post(url, data)
@@ -21,19 +19,6 @@ const postData = async (url = '', data = {}) => {
     catch (error) {
         console.log("error", error);
     }
-
-}
-
-// Update UI function
-const updateUi = (res) => {
-    $('#output').css('display', 'block');
-    // console.log(res.data.geonames[0].lng);
-    $('#lng').text(res.data.geonames[0].lng);
-    $('#lat').text(res.data.geonames[0].lat);
-    // document.getElementById('subjectivity').innerHTML = data.subjectivity.toLowerCase();
-    // document.getElementById('confidence').innerHTML = data.confidence;
-    // document.getElementById('irony').innerHTML = data.irony.toLowerCase();
-    // Client.resultImg(data);
 }
 
 // Form handel submit function
@@ -53,21 +38,12 @@ function handleSubmit(event) {
                 // console.log(res.data);
                 apiData = res.data;
                 console.log(apiData);
+                // Error handel
                 if (apiData === false) {
                     alert(`Destination Not Found. Make sure you write the correct spelling or specify the destination`);
                 } else {
                     Client.appinfo(apiData);
                 }
-
-
-                // info.push(res.data)
-                // // Error city not found
-                // if (res.data.totalResultsCount == 0) {
-                //     alert('City Not Found');
-                // }
-                // else {
-                //     updateUi(res);
-                // }
             })
     }
 }

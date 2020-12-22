@@ -3,12 +3,29 @@
 // check the date of return (return date is valid) is after date of departure
 const checkValidDate = (input) => {
     //  todays date minus the departure date 
-    let dep = new Date(input.departure_date);
-    console.log(dep);
-    // let depd = new Date(dep);
-    // console.log(depd.getDate());
+    console.log(input.departure_date);
     let today = new Date();
+    let dep = new Date(input.departure_date)
+    // To compare departure day with the current date
+    // (had to do it this way due to problems encountered when departure and today dates are the same.The time differences cased unwanted behaviour)
+    let m = today.getMonth() + 1;
+    let d = today.getDate();
+    let y = today.getFullYear();
+
+    let today_date = y + '/' + m + '/' + d;
+    console.log(today_date);
+    let mo = dep.getMonth() + 1;
+    let da = dep.getDate();
+    let ye = dep.getFullYear();
+    var departureD = ye + '/' + mo + '/' + da;
+    console.log(departureD);
+
+    // let dep = new Date(input.departure_date).toDateString();
+    console.log(dep);
+
     console.log(today);
+    console.log(typeof (dep));
+
     let daysToTravel = parseInt((dep - today) / (24 * 3600 * 1000));
     console.log(daysToTravel);
     // $('.date').on('change', function () {
@@ -19,7 +36,7 @@ const checkValidDate = (input) => {
         // console.log(false);
         return false;
     }
-    else if (dep < (today)) {
+    else if (departureD < today_date) {
         alert("Invalid departure date");
         // console.log(false);
         return false;
