@@ -1,6 +1,5 @@
 import axios from "axios";
 import $ from "jquery";
-let apiData;
 
 // Fixing Cross Browser Compatibility for Input type–date
 (function () {
@@ -9,6 +8,7 @@ let apiData;
     }
 })();
 
+// Post function
 export const postData = async (url = '', data = {}) => {
 
     try {
@@ -24,24 +24,24 @@ export const postData = async (url = '', data = {}) => {
 // Form handel submit function
 function handleSubmit(event) {
     event.preventDefault()
-    // check what text was put into the form field
+    // Get input from user
     let info = {
         destination: $('#destination').val(),
         departure_date: $('#departure').val(),
         return_date: $('#return').val()
     }
-
+    // Check input for errors then get data from server
     if (Client.checkForInput(info)) {
         //  Post request
         postData('http://localhost:8081/api', info)
             .then(function (res) {
-                // console.log(res.data);
-                apiData = res.data;
-                console.log(apiData);
+                let apiData = res.data;
                 // Error handel
                 if (apiData === false) {
                     alert(`Destination Not Found. Make sure you write the correct spelling or specify the destination`);
-                } else {
+                }
+                // Send data to update user interface
+                else {
                     Client.appinfo(apiData);
                 }
             })

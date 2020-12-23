@@ -1,31 +1,27 @@
 import $ from "jquery";
-// data.reverse()
-function tripData() {
 
+// Display trips data
+const tripData = () => {
+    //Check local storage for data
     let tripsArray = localStorage.getItem('trips')
         ? JSON.parse(localStorage.getItem('trips'))
         : []
-    console.log('trips array');
-    console.log(tripsArray);
+
     localStorage.setItem('trips', JSON.stringify(tripsArray))
     let data = JSON.parse(localStorage.getItem('trips'))
 
-    // Title of my trips section.No trips stay hidden
+    // Check if there's no trips saved title,trips section stay hidden
     if (data.length !== 0) {
-        $(".trips").css("visibility", "visible");
-        $(".all-trips").css("visibility", "visible");
+        $(".trips-title").css("visibility", "visible");
+        $(".delete-all-trips").css("visibility", "visible");
     }
 
-    const trip = (text) => {
-        $('#myTrips').append(text)
-    }
-    function ui() {
+    const ui = () => {
         if (data.length >= 1) {
             // Reverse the order of the data array to have the latest trip added at the top
             // data.reverse();
             data.forEach((info) => {
                 //languages and currencies return an array with an objects
-                console.log(data.indexOf(info));
                 let lang = [];
                 let currency = [];
                 info.languages.forEach((language) => {
@@ -38,10 +34,8 @@ function tripData() {
                 let currencies = currency.toString()
                 let languages = lang.toString()
 
-
                 let content =
                     ` <div class="card">
-                    <span id="infoTrip" style="display:none;">${data.indexOf(info)}</span>
               <img src="${info.imageUrl}" class="card-img-top countryImg" alt="photo of ${info.country}">
               <div class="card-body">
                     <div class="row">
@@ -61,7 +55,7 @@ function tripData() {
                         <div>
                             <p>Departure Date:${info.departure}</p>
                             <p>Return Date:${info.return}</p>
-                            <p> <strong>${info.remainingDays} Days left for your ${info.tripDuration} day trip to ${info.destination}</strong></p>
+                            <p> <strong>${info.remainingDays} Days left for your ${info.tripDuration} day(s) trip to ${info.destination}</strong></p>
                             <a target="_blank" href="https://en.wikivoyage.org/wiki/${info.country}" class="btn btn-primary" >For more info about ${info.country}</a>
                         </div>
                     </div>
@@ -79,89 +73,48 @@ function tripData() {
                     </div >
                 </div >
                 </div > `
-                // trip(item);
-                // console.log(Array.isArray(tripsArray));
-                trip(content);
 
+                $('#myTrips').append(content);
             })
         }
-
     }
     ui();
 }
 
 // Delete trip
 const deleteTrip = (e) => {
-    // console.log((e.currentTarget));
-    console.log('delete trip');
+
     let tripsArray = JSON.parse(localStorage.getItem('trips'))
-    console.log(tripsArray);
-    console.log(tripsArray.length);
     let x = e.getAttribute('data-tripIndex');
-
-
-    console.log(x);
-    console.log(Array.isArray(tripsArray));
-    let j = tripsArray.splice(x, 1);
-    console.log(j);
-    console.log(tripsArray);
+    tripsArray.splice(x, 1);
     $('.card').remove();
-    // e.target.closest('#card').remove();
-    // console.log($(this).closest('#card').text);
-    // localStorage.removeItem('trips[x]');
     localStorage.setItem('trips', JSON.stringify(tripsArray))
     tripData();
-    // data = JSON.parse(localStorage.getItem('trips'))
-    // console.log('done');
-    // console.log(data);
-
-
-    // enterApp();
-
-
-    // console.log(this);
-    // let indexOfTrip = $("#infoTrip").text();
-    // console.log(indexOfTrip);
-
-    // $('#card').remove();
-
-    // let trip = event.target()
-    // console.log(trip);
-    // trip.remove($('#card'));
-    // $('#card').event.target(e).remove
-
-
 }
 
-
-
-// i have to do the below function it with event listener
 function enterApp() {
     $("#landing").css("transform", "translate(-200vw)");
     $("#dimmed-bg").css("visibility", "visible");
     $("#dimmed-bg").css("transform", "translate(0)");
-    // $("#above-fold").css("opacity", "1");
     $("#full-site").css("visibility", "visible");
     $("#full-site").css("overflow", "visible");
     $("#full-site").css("animation", "2s content");
     $("#full-site").css("max-height", "auto");
     tripData();
-    // $(".delete").on("click", deleteTrip)
-
-
-
-    // $("#register-side-bar").css("transform", "translate(0)");
 }
 
 // To clear all trips
 const deleteAll = () => {
-    localStorage.clear();
-    $('.card').remove();
-    tripData();
-    $(".trips").css("visibility", "hidden");
-    $(".all-trips").css("visibility", "hidden");
-}
+    const del = () => {
+        localStorage.clear();
+        $('.card').remove();
+        tripData();
+        $(".trips-title").css("visibility", "hidden");
+        $(".delete-all-trips").css("visibility", "hidden");
+    }
+    return confirm('Are you sure you want to delete all trips?') ? del() : '';
 
+}
 
 export {
     enterApp,
