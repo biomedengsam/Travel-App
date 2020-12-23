@@ -3,9 +3,10 @@ import $ from "jquery";
 const trip = (info) => {
     let tripsArray = JSON.parse(localStorage.getItem('trips'));
     let tripIndex = (tripsArray.length) - 1;
-    console.log(tripIndex);
     let lang = [];
     let currency = [];
+
+    //Get languages and currencies and store them in there corresponding arrays
     info.languages.forEach((language) => {
         lang.push(language.name);
     })
@@ -13,12 +14,14 @@ const trip = (info) => {
     info.currencies.forEach((coin) => {
         currency.push(coin.name);
     })
+
+    // Convert lang,currency arrays to string
     let currencies = currency.toString()
     let languages = lang.toString()
 
     //Switch visibility on for the title of my trips section.And delete all trips button
-    $(".trips").css("visibility", "visible");
-    $(".all-trips").css("visibility", "visible");
+    $(".trips-title").css("visibility", "visible");
+    $(".delete-all-trips").css("visibility", "visible");
 
     let content =
         ` <div class="card" >
@@ -59,13 +62,12 @@ const trip = (info) => {
                 </div >
                 </div > `
 
-    // Append trip as first child (latest trip)
+    // Append trip as first child
     $('#myTrips').prepend(content);
+
     // Scroll to my trips smoothly
     let scrollTO = () => {
-        console.log('scroll into');
         $('#myTrips')[0].scrollIntoView({ behavior: 'smooth' });
-
     }
     scrollTO();
 }
@@ -73,13 +75,9 @@ const trip = (info) => {
 function appinfo(apiData) {
 
     let tripsArray = JSON.parse(localStorage.getItem('trips'));
-    // console.log('trips array app before push');
-    // console.log(tripsArray);
-    tripsArray.push(apiData)
-    // console.log('trips array app after push');
-    // console.log(tripsArray);
-    localStorage.setItem('trips', JSON.stringify(tripsArray))
-    trip(apiData)
+    tripsArray.push(apiData);
+    localStorage.setItem('trips', JSON.stringify(tripsArray));
+    trip(apiData);
 }
 
 export {
