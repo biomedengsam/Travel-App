@@ -1,11 +1,40 @@
-# Project Description:
- This project is a web tool that allows users to run Natural Language Processing (NLP) on text from articles, blogs found on other websites ,or any text you would like to analyze. NLP is the ability of an application to understand the human language, written or oral.
-With the use of an external api called **MeaningCloud API** to do the language processing.
+# Travel App
+Udacity - Capstone Project
 
-## Project setup and tools:
+## Project Description:
+ This project is a travel app that allows users to plan their trips, the user will start by adding the location and dates of their trip.<br>
+ With the use of 5 API's the details that will be displayed:
+1. The weather (current/forecast) at the time of the trip (which is only limited for 16 days in the future)
+2. Destination info (region, country, capital, population, currencies, languages)
+3. Departure and return dates
+4. Days left before departure date
+5. Duration of the trip
+6. An image of the destination
+Also, the app allows the user to add multiple destination/cities.And the data will be stored in local storage
+
+## Project technologies and tools:
 - Webpack
+- Node.js
 - Express
-- Sass for styles
-- Webpack Loaders and Plugins
+- Html
+- CSS
+- Sass
+- JavaScript
 - Service workers
-- MeaningCloud API
+
+### Api list:
+1. Geonames
+2. Weatherbit 16 Day Weather Forecast API
+3. Weatherbit Current Weather API
+4. Pixabay
+5. REST Countries API
+
+**Note for the reviewer** in this app i used the current weather api if the trip is within 7 days, and forecast api if it was more.
+Extend your Project Further implemented in this app:
+- Add end date and display length of trip.
+- Pull in an image for the country from Pixabay API when the entered location brings up no results
+- Integrate the REST Countries API to pull in data for the country being visited.
+- Allow the user to remove the trip.
+- Use Local Storage to save the data so that when they close, then revisit the page, their information is still there.
+- Incorporate icons into forecast.
+- Allow the user to add additional trips
