@@ -1,7 +1,7 @@
 import { checkForInput } from './js/inputChecker'
 import { handleSubmit } from './js/formHandler'
 import { enterApp } from './js/eventListener'
-import { appinfo } from './js/addTrip'
+import { appInfo } from './js/addTrip'
 import { deleteTrip } from './js/eventListener'
 import { deleteAll } from './js/eventListener'
 import './styles/main.scss'
@@ -29,7 +29,7 @@ export {
     handleSubmit,
     enterApp,
     datepicker,
-    appinfo,
+    appInfo,
     deleteTrip,
     deleteAll
 }

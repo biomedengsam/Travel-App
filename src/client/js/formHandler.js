@@ -42,7 +42,7 @@ function handleSubmit(event) {
                 }
                 // Send data to update user interface
                 else {
-                    Client.appinfo(apiData);
+                    Client.appInfo(apiData);
                 }
             })
     }

@@ -1,29 +1,6 @@
-@function px-to-rem($size) {
-  $value: $size / 16px;
-  @return #{$value}rem;
-}
-
-@keyframes intro-content {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes intro-header {
-  0% {
-    transform: translateY(40px) scale(0.6);
-  }
-  100% {
-    transform: translate(0) scale(1);
-  }
-}
-
 #bg {
   //   background-image: url(get-image("bg.jpg"));
-  background-image: url("../media/bg.jpg");
+  background-image: url('../media/bg.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
@@ -74,5 +51,23 @@
     &:hover {
       opacity: 0.8;
     }
+  }
+}
+
+@keyframes intro-content {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-header {
+  0% {
+    transform: translateY(40px) scale(0.6);
+  }
+  100% {
+    transform: translate(0) scale(1);
   }
 }

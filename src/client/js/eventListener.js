@@ -18,8 +18,6 @@ const tripData = () => {
 
     const ui = () => {
         if (data.length >= 1) {
-            // Reverse the order of the data array to have the latest trip added at the top
-            // data.reverse();
             data.forEach((info) => {
                 //languages and currencies return an array with an objects
                 let lang = [];

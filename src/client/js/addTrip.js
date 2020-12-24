@@ -72,7 +72,7 @@ const trip = (info) => {
     scrollTO();
 }
 
-function appinfo(apiData) {
+function appInfo(apiData) {
 
     let tripsArray = JSON.parse(localStorage.getItem('trips'));
     tripsArray.push(apiData);
@@ -81,5 +81,5 @@ function appinfo(apiData) {
 }
 
 export {
-    appinfo
+    appInfo
 }
