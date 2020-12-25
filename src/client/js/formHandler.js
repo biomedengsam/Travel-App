@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require("axios");
 import $ from "jquery";
 
 // Fixing Cross Browser Compatibility for Input type–date
