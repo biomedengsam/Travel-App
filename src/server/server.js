@@ -1,15 +1,12 @@
-// var path = require('path')
 const express = require('express')
 const dotenv = require('dotenv');
-// const fetch = require("node-fetch");
 const axios = require('axios');
-// const CircularJSON = require("circular-json");
 dotenv.config();
-
 const app = express();
 const username = process.env.user_name;
 const weatherApi = process.env.weatherApi;
 const pixabayKey = process.env.pixabayKey;
+
 let allTrips = [];
 
 /* Dependencies */
@@ -32,6 +29,7 @@ app.get('/', function (req, res) {
 })
 
 module.exports = app
+
 // For jest testing
 app.get('/test', async (req, res) => {
     res.json({ message: 'pass!' })
@@ -39,6 +37,8 @@ app.get('/test', async (req, res) => {
 
 // Get data from geoNames api
 const getDataFromGeoNames = async (username, destination) => {
+    //Check for whitespace and replace the spaces with + sign
+    destination = destination.replace(/\s/g, '+');
     const url = `http://api.geonames.org/searchJSON?q=${destination}&maxRows=2&username=${username}`;
     try {
         return await axios.get(url)
@@ -86,7 +86,6 @@ const getForecastWeatherApi = async (weatherApi, geo_data) => {
     try {
         return await axios.get(url)
             .then(res => {
-                // console.log(res.data);
                 return res.data.data
             });
     } catch (e) {
@@ -104,15 +103,15 @@ const getCountryInfo = async (geo_data) => {
                 return res.data
 
             });
-    } catch (e) {
+    }
+    catch (e) {
         console.log(e);
     }
 }
 
 //Get image from Pixabay
 const getLocationImage = async (pixabayKey, location, country) => {
-    //Check for whitespace and replace the spaces with + sign
-    // location = location.replace(/\s/g, '+');
+
     const url = `https://pixabay.com/api/?q=${encodeURIComponent(location)}&key=${pixabayKey}&image_type=photo`;
     try {
 
@@ -121,16 +120,17 @@ const getLocationImage = async (pixabayKey, location, country) => {
                 //Checks the number of hits for the searched location images
                 if (res.data.totalHits > 0) {
                     // return the first matched image
-                    console.log('found match');
+                    // console.log('found match');
                     return res.data.hits[0].webformatURL
                 }
                 // No images found in pixabay for location,get an image for the country of the location
                 else {
-                    console.log('No match');
+                    // console.log('No match');
                     return getLocationImage(pixabayKey, country);
                 }
             });
-    } catch (e) {
+    }
+    catch (e) {
         console.log(e);
     }
 }
@@ -161,19 +161,18 @@ const api = async (input) => {
     let dest = destination[0].toUpperCase() + destination.substring(1);
     let departureDate = input.departure_date;
     let returnDate = input.return_date;
-    console.log(destination);
+    // console.log(destination);
     let today = new Date();
     let departure = new Date(departureDate);
     let returnDt = new Date(returnDate);
     let remainingDays = parseInt((departure - today) / (24 * 3600 * 1000));
     let tripDuration = parseInt((returnDt - departure) / (24 * 3600 * 1000));
+
     try {
         // Get lang and lat from geonames api
         const geo_data = await (getDataFromGeoNames(username, destination));
-        console.log('geo_data');
-        console.log(geo_data);
+
         if (geo_data === false || geo_data.countryCode === undefined) {
-            console.log('false');
             return false
         }
         else {
@@ -188,7 +187,6 @@ const api = async (input) => {
                 capital: countryInfo.capital,
                 region: countryInfo.region,
                 population: countryInfo.population,
-                //languages and currencies return an array with an object inside with the data
                 languages: countryInfo.languages,
                 currencies: countryInfo.currencies,
                 flagUrl: countryInfo.flag,
@@ -199,25 +197,22 @@ const api = async (input) => {
                 imageUrl: destImage,
                 weather: weatherdata,
             }
-
         }
-
-    } catch (error) {
+    }
+    catch (error) {
         console.error(error);
     }
-
 }
 
 app.post('/api', async function (req, res) {
     try {
         const apiData = await api(req.body);
-        console.log(apiData);
-        // delete allTrips when doe just for debugging
         allTrips.push(apiData);
-        console.log(allTrips);
+        // console.log(allTrips);
         res.send(apiData)
 
-    } catch (error) {
+    }
+    catch (error) {
         console.error(error);
     }
 })

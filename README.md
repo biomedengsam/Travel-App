@@ -1,5 +1,5 @@
 # Travel App
-Udacity - Capstone Project
+Udacity FEND- Capstone Project
 
 ## Project Description:
  This project is a travel app that allows users to plan their trips, the user will start by adding the location and dates of their trip.<br>

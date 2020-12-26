@@ -3,11 +3,20 @@
   align-self: center;
   margin: 50px auto;
   width: 65%;
+  font-size: 1.3rem;
+  a {
+    font-size: 1rem;
+    margin: 1rem auto;
+    &:hover {
+      transform: scale(1.08);
+    }
+  }
 }
 
 .countryImg {
   height: calc(27rem - 70px);
 }
+
 #flag {
   width: 40px;
   height: 40px;
@@ -20,18 +29,17 @@ hr {
   background-color: #22394b;
 }
 
-a {
-  margin: 1rem auto;
-  &:hover {
-    transform: scale(1.08);
-  }
-}
 .info {
   display: flex;
   align-content: space-between;
+  div:first-of-type {
+    margin-right: 1rem;
+  }
+
   p {
     margin-bottom: 0.5rem;
   }
+
   .btn-primary {
     color: #fff;
     background-color: #086777;
@@ -47,12 +55,14 @@ a {
   background-color: #086777;
   text-align: center;
   color: antiquewhite;
+
   h3 {
     margin: 1rem;
   }
-  h6 {
-    font-size: 1.2rem;
-  }
+}
+
+.weather-info {
+  font-size: 1.3rem;
 }
 
 button {
@@ -66,13 +76,13 @@ button {
   visibility: hidden;
 }
 
-@media only screen and (max-width: 1023px) {
+@media screen and (max-width: 1023px) {
   .card {
     width: 100%;
   }
 }
 
-@media only screen and (max-width: 424px) {
+@media screen and (max-width: 424px) {
   .info {
     flex-direction: column;
   }
@@ -82,18 +92,31 @@ button {
   }
 }
 
-// @media only screen and (max-width: 574px) {
-//   .weather {
-//     margin-top: 2rem;
-//   }
-// }
-
-@media only screen and (min-width: 2000px) {
+@media screen and (min-width: 2000px) {
   .countryImg {
     height: calc(45rem - 100px);
   }
 }
 
-// @media only screen and (min-width: 2560px) {
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card {
+    width: 80%;
+  }
+}
 
-// }
+@media screen and (min-width: 2560px) {
+  p,
+  .weather-info,
+  .card-title {
+    font-size: 1.8rem;
+  }
+
+  #weather-title {
+    font-size: 2.3rem;
+  }
+
+  #more-info,
+  .delete {
+    font-size: 1.5rem;
+  }
+}

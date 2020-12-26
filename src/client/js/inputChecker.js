@@ -11,6 +11,7 @@ const checkValidDate = (input) => {
     let d = today.getDate();
     let y = today.getFullYear();
     let today_date = y + '/' + m + '/' + d;
+
     // Get departure date format as (year/month/day)
     let mo = dep.getMonth() + 1;
     let da = dep.getDate();
@@ -19,6 +20,7 @@ const checkValidDate = (input) => {
 
     // Calculate number of days left before departure return false
     let daysToTravel = parseInt((dep - today) / (24 * 3600 * 1000));
+
     // Return day before departure
     if (input.return_date < input.departure_date) {
         alert("Invalid return date");
@@ -39,7 +41,6 @@ const checkValidDate = (input) => {
     }
 }
 
-
 const checkForInput = (input) => {
     // Checks for no input
     for (let key in input) {
@@ -51,7 +52,5 @@ const checkForInput = (input) => {
     }
     return checkValidDate(input);
 }
-
-
 
 export { checkForInput }
