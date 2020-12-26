@@ -8,8 +8,8 @@
   <body>
     <div id="bg"></div>
     <section id="landing">
-      <h1>Travel Planner</h1>
-      <blockquote>
+      <h1 id="landing-title">Travel Planner</h1>
+      <blockquote id="quote">
         “Twenty years from now you will be more disappointed by the things that
         you didn’t do than by the ones you did do. So throw off the bowlines.
         Sail away from the safe harbor. Catch the trade winds in your sails.
@@ -22,10 +22,12 @@
       <header>
         <nav class="nav">
           <div class="logo">
-            <img id="logo" src="" alt="logo" height="120" />
+            <img id="logo" src="" alt="logo" height="60" />
           </div>
           <div class="delete-all-trips">
-            <button class="btn btn-danger">Delete All Trips</button>
+            <button id="delete-all" class="btn btn-danger">
+              Delete All Trips
+            </button>
           </div>
         </nav>
       </header>
@@ -39,7 +41,7 @@
             type="text"
             name="input"
             value=""
-            placeholder="Enter text to analyze"
+            placeholder="Enter city or country name"
             required
           />
           <label for="departure">Enter departure date:</label>
@@ -71,20 +73,18 @@
       </div>
       <h1 class="trips-title mt-3">My Trips</h1>
       <section id="myTrips"></section>
-
       <footer>
         <p>Copyright © Travel App. All Rights Reserved</p>
       </footer>
     </section>
-    <!-- <script src="../../../dist/main.js"></script> -->
-    <!-- <script>
-            // Check that service workers are supported
-            if ('serviceWorker' in navigator) {
-                // Use the window load event to keep the page load performant
-                window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('/service-worker.js');
-                });
-            }
-        </script> -->
+    <script>
+      // Check that service workers are supported
+      if ('serviceWorker' in navigator) {
+        // Use the window load event to keep the page load performant
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    </script>
   </body>
 </html>

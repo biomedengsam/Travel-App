@@ -3,10 +3,31 @@ header {
   .nav {
     justify-content: space-between;
   }
+
+  @media screen and (max-width: 769px) {
+    #delete-all {
+      font-size: 1rem;
+    }
+  }
 }
 
 .delete-all-trips {
   visibility: hidden;
   align-self: center;
   margin: 1rem;
+}
+
+#logo {
+  margin: 1rem;
+}
+
+@media screen and (min-width: 2560px) {
+  #delete-all {
+    font-size: 1.8rem;
+  }
+
+  #logo {
+    height: 100px;
+    margin: 1.5rem;
+  }
 }

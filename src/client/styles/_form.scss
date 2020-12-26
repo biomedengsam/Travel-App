@@ -1,4 +1,4 @@
-@import "~bootstrap/scss/bootstrap";
+@import '~bootstrap/scss/bootstrap';
 
 form {
   width: 50%;
@@ -12,11 +12,11 @@ form {
     line-height: 16px;
     margin: 10px 0;
   }
+}
 
-  #submit {
-    font-size: 1.5rem;
-    color: #384c5c;
-  }
+#submit {
+  font-size: 1.5rem;
+  color: #384c5c;
 }
 
 label {
@@ -26,7 +26,7 @@ label {
 
 .form {
   display: flex;
-  background-image: url("../media/plane.jpg");
+  background-image: url('../media/plane.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -39,7 +39,7 @@ label {
   }
 }
 
-@media only screen and (max-width: 650px) {
+@media screen and (max-width: 650px) {
   form {
     width: 100%;
     margin: 0;
@@ -49,8 +49,19 @@ label {
   }
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   label {
     font-size: 1.29rem;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .form-control {
+    font-size: 2rem;
+  }
+
+  #submit,
+  label {
+    font-size: 2.5rem;
   }
 }

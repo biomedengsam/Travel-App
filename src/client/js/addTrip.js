@@ -1,7 +1,9 @@
 import $ from "jquery";
 
 const trip = (info) => {
+    // Get data from local storage
     let tripsArray = JSON.parse(localStorage.getItem('trips'));
+    // Get the index for the new trip
     let tripIndex = (tripsArray.length) - 1;
     let lang = [];
     let currency = [];
@@ -45,17 +47,17 @@ const trip = (info) => {
                             <p>Departure Date:${info.departure}</p>
                             <p>Return Date:${info.return}</p>
                             <p> ${info.remainingDays} Days left for your ${info.tripDuration} day trip to ${info.destination}</p>
-                             <a target="_blank" href="https://en.wikivoyage.org/wiki/${info.country}" class="btn btn-primary">For more info about ${info.country}</a>
+                             <a target="_blank" href="https://en.wikivoyage.org/wiki/${info.country}" id="more-info" class="btn btn-primary">For more info about ${info.country}</a>
                         </div>
                     </div>
                     <button  type="button" name="button" data-tripIndex="${tripIndex}"  class="btn btn-danger delete" onclick="Client.deleteTrip(this)" >Delete Trip</button>
                   </div >
                     <div class="col-sm-4 weather">
-                    <h3>weather for trip time</h3>
-                    <h6>Description</h6>
+                    <h3 id="weather-title">weather on trip date</h3>
+                    <h6 class="weather-info">Description</h6>
                     <p>${info.weather.weatherInfo.description}</p>
-                    <img class="weather-icon"src="https://www.weatherbit.io/static/img/icons/${info.weather.weatherInfo.icon}.png ">
-                    <h6>Temperature</h6>
+                    <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${info.weather.weatherInfo.icon}.png" alt="weather icon">
+                    <h6 class="weather-info">Temperature</h6>
                     <p>${info.weather.temp}<P>
                     </div>
                     </div >
@@ -72,9 +74,10 @@ const trip = (info) => {
     scrollTO();
 }
 
-function appInfo(apiData) {
-
-    let tripsArray = JSON.parse(localStorage.getItem('trips'));
+const appInfo = (apiData) => {
+    let tripsArray = localStorage.getItem('trips')
+        ? JSON.parse(localStorage.getItem('trips'))
+        : []
     tripsArray.push(apiData);
     localStorage.setItem('trips', JSON.stringify(tripsArray));
     trip(apiData);
