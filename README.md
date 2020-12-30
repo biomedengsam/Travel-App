@@ -22,12 +22,39 @@ Also, the app allows the user to add multiple destination/cities.And the data wi
 - JavaScript
 - Service workers
 
-### Api list:
+### Api used list:
 1. Geonames
 2. Weatherbit 16 Day Weather Forecast API
 3. Weatherbit Current Weather API
 4. Pixabay
 5. REST Countries API
+## Project Setup
+Follow the instructions below to setup the project locally.
+### API credentials needed
+Acquire credentials for the following Apis and save them in .env file in the main directory
+* user_name = Geonames username
+* weatherApi = Weatherbit API KEY
+* pixabayKey = Pixabay API KEY
+
+### Install Dependencies
+Run the following command:
+
+```npm install```
+### Bundle modules
+Run the following command if you want to bundle the modules for production:
+
+```npm run build```
+or in development mode:
+
+```npm run dev```
+### Running the server
+Run the following command to run the server:
+
+```npm start```
+### Running the tests
+Run the following command to run the server:
+
+```npm run test```
 
 **Note for the reviewer** in this app i used the current weather api if the trip is within 7 days, and forecast api if it was more.
 Extend your Project Further implemented in this app:

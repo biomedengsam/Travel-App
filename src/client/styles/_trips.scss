@@ -82,13 +82,19 @@ button {
   }
 }
 
-@media screen and (max-width: 424px) {
+@media screen and (max-width: 426px) {
   .info {
     flex-direction: column;
   }
 
   .countryImg {
     height: calc(20rem - 70px);
+  }
+
+  #more-info,
+  .delete{
+    width: 100%;
+    font-size: 1.2rem;
   }
 }
 
