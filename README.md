@@ -43,7 +43,7 @@ Run the following command:
 ### Bundle modules
 Run the following command if you want to bundle the modules for production:
 
-```npm run build```
+```npm run build``` <br>
 or in development mode:
 
 ```npm run dev```
