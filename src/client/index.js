@@ -4,11 +4,10 @@ import { enterApp } from './js/eventListener'
 import { appInfo } from './js/addTrip'
 import { deleteTrip } from './js/eventListener'
 import { deleteAll } from './js/eventListener'
+import { tripsDelete } from './js/helpers'
 import './styles/main.scss'
 import bg from './media/bg.jpg';
-import $ from "jquery";
 import logo from './media/logo.png';
-import datepicker from '../../node_modules/jquery-ui/ui/widgets/datepicker';
 
 // Set images src
 let logoImg = document.getElementById('logo');
@@ -17,19 +16,19 @@ let bgImg = document.getElementById('bg');
 bgImg.src = bg;
 
 // Event listener on entering app
-$('#enter').on('click', enterApp)
+document.getElementById('enter').addEventListener('click', enterApp);
 // Event listener on submitting form
-$('form').on('submit', handleSubmit);
+document.getElementById('submit').addEventListener('click', handleSubmit);
 // Event listener on delete all trips button
-$('.delete-all-trips').on('click', deleteAll);
+document.getElementById('delete-all-trips').addEventListener('click', deleteAll);
 
 export {
 
     checkForInput,
     handleSubmit,
     enterApp,
-    datepicker,
     appInfo,
     deleteTrip,
-    deleteAll
+    deleteAll,
+    tripsDelete
 }

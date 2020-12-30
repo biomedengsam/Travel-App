@@ -1,19 +1,10 @@
 import axios from "axios";
-import $ from "jquery";
-
-// Fixing Cross Browser Compatibility for Input type–date
-(function () {
-    if ($('.dateText').type === 'text') {
-        $('.dateText').datepicker({ dateFormat: 'yy-mm-dd' });
-    }
-})();
 
 // Post function
 export const postData = async (url = '', data = {}) => {
 
     try {
         const response = await axios.post(url, data)
-        // console.log(response);
         return response;
     }
     catch (error) {
@@ -26,15 +17,15 @@ const handleSubmit = (event) => {
     event.preventDefault()
     // Get input from user
     let info = {
-        destination: $('#destination').val(),
-        departure_date: $('#departure').val(),
-        return_date: $('#return').val()
+        destination: document.getElementById('destination').value,
+        departure_date: document.getElementById('departure').value,
+        return_date: document.getElementById('return').value
     }
 
     // reset input fields
-    $('#destination').val("");
-    $('#departure').val("");
-    $('#return').val("");
+    document.getElementById('destination').value = "";
+    document.getElementById('departure').value = "";
+    document.getElementById('return').value = "";
 
     // Check input for errors then get data from server
     if (Client.checkForInput(info)) {
