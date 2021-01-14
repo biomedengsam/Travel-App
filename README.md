@@ -64,4 +64,10 @@ Extend your Project Further implemented in this app:
 - Allow the user to remove the trip.
 - Use Local Storage to save the data so that when they close, then revisit the page, their information is still there.
 - Incorporate icons into forecast.
-- Allow the user to add additional trips
+- Allow the user to add additional trips<br>
+#### Below there is a video demonstration of the project<br>
+
+<a href="https://youtu.be/1nR4--cnbC4
+" target="_blank"><img src="http://img.youtube.com/vi/1nR4--cnbC4/0.jpg" 
+alt="project link" width="500" height="300" border="10" /></a>
+
