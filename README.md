@@ -1,4 +1,4 @@
-# Travel App
+# Travel Planner
 Udacity FEND- Capstone Project
 
 ## Project Description:
