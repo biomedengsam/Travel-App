@@ -1,9 +1,9 @@
-# Travel App
+# Travel Planner
 Udacity FEND- Capstone Project
 
 ## Project Description:
- This project is a travel app that allows users to plan their trips, the user will start by adding the location and dates of their trip.<br>
- With the use of 5 API's the details that will be displayed:
+ This project is a travel app that allows users to plan their trips, the user will start by adding the location and dates of their trip.
+ With the use of 5 API's the details that will be displayed:<br>
 1. The weather (current/forecast) at the time of the trip (which is only limited for 16 days in the future)
 2. Destination info (region, country, capital, population, currencies, languages)
 3. Departure and return dates
@@ -43,7 +43,7 @@ Run the following command:
 ### Bundle modules
 Run the following command if you want to bundle the modules for production:
 
-```npm run build```
+```npm run build``` <br>
 or in development mode:
 
 ```npm run dev```
@@ -64,4 +64,10 @@ Extend your Project Further implemented in this app:
 - Allow the user to remove the trip.
 - Use Local Storage to save the data so that when they close, then revisit the page, their information is still there.
 - Incorporate icons into forecast.
-- Allow the user to add additional trips
+- Allow the user to add additional trips<br>
+#### Below there is a video demonstration of the project<br>
+
+<a href="https://youtu.be/1nR4--cnbC4
+" target="_blank"><img src="http://img.youtube.com/vi/1nR4--cnbC4/0.jpg" 
+alt="project link" width="500" height="300" border="10" /></a>
+
