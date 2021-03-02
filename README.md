@@ -4,13 +4,13 @@ Udacity FEND- Capstone Project
 ## Project Description:
  This project is a travel app that allows users to plan their trips, the user will start by adding the location and dates of their trip.
  With the use of 5 API's the details that will be displayed:<br>
-1. The weather (current/forecast) at the time of the trip (which is only limited for 16 days in the future)
-2. Destination info (region, country, capital, population, currencies, languages)
-3. Departure and return dates
-4. Days left before departure date
-5. Duration of the trip
-6. An image of the destination
-Also, the app allows the user to add multiple destination/cities.And the data will be stored in local storage
+1. The weather (current/forecast) at the time of the trip (which is only limited for 16 days in the future).
+2. Destination info (region, country, capital, population, currencies, languages).
+3. Departure and return dates.
+4. Days left before departure date.
+5. Duration of the trip.
+6. An image of the destination.
+Also, the app allows the user to add multiple destination/cities.And the data will be stored in local storage.
 
 ## Project technologies and tools:
 - Webpack
