@@ -22,6 +22,12 @@ document.getElementById('submit').addEventListener('click', handleSubmit);
 // Event listener on delete all trips button
 document.getElementById('delete-all-trips').addEventListener('click', deleteAll);
 
+// Loading weather icons 
+// function importAll(response) {
+//   return response.keys().map(response);
+// }
+// importAll(require.context("../client/media/", false, /\.(svg)$/));
+
 export {
 
     checkForInput,
