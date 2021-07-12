@@ -56,7 +56,7 @@ Run the following command to run the server:
 
 ```npm run test```
 
-**Note for the reviewer** In this app i used the current weather API if the trip is within 7 days, and forecast api if it was more.
+**Note for the reviewer**: In this app i used the current weather API if the trip is within 7 days, and forecast api if it was more.
 Extend your Project Further implemented in this app:
 - Add end date and display length of trip.
 - Pull in an image for the country from Pixabay API when the entered location brings up no results
